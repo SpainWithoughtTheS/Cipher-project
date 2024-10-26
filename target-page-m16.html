@@ -71,13 +71,6 @@
         .coordinates {
             font-size: 1.5em;
             margin-bottom: 20px;
-            animation: blink 1s step-end infinite;
-        }
-
-        @keyframes blink {
-            50% {
-                opacity: 0;
-            }
         }
 
         /* Tracker Text */
@@ -85,18 +78,6 @@
             font-size: 1em;
             margin-top: 20px;
             color: #00ff00;
-            animation: scrollText 15s linear infinite;
-            overflow: hidden;
-            white-space: nowrap;
-        }
-
-        @keyframes scrollText {
-            0% {
-                transform: translateX(100%);
-            }
-            100% {
-                transform: translateX(-100%);
-            }
         }
     </style>
 </head>
