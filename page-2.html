@@ -98,26 +98,21 @@
 </head>
 <body>
 
-    <!-- Initial Loading Screen -->
+   
     <div class="loadingScreen" id="initialLoadingScreen">
         <h1>Loading Secure Access...</h1>
         <p>Please wait...</p>
     </div>
 
-    <!-- Second Loading Screen for 007 Code -->
-    <div class="loadingScreen" id="secondLoadingScreen" style="display: none;">
-        <h1>Verifying Agent 007...</h1>
-        <p>Finalizing access...</p>
-    </div>
 
-    <!-- Main Container -->
+   
     <div class="container" id="mainContainer">
         <h1>Enter Access Code</h1>
         <input type="text" id="codeInput" placeholder="Enter code here...">
         <button onclick="checkCode()">Submit</button>
     </div>
 
-    <!-- Secondary Container for Username if "m16" is entered -->
+    
     <div class="container" id="finalPasswordContainer" style="display: none;">
         <h1>Enter Username</h1>
         <input type="text" id="finalPasswordInput" placeholder="Enter username...">
@@ -127,7 +122,7 @@
     </div>
 
     <script>
-        // Show the main content after initial loading
+
         window.onload = function() {
             setTimeout(() => {
                 document.getElementById('initialLoadingScreen').style.display = 'none';
@@ -135,19 +130,11 @@
             }, 2000); // 2-second initial loading screen delay
         };
 
-        // Check initial access code
+       
         function checkCode() {
             const code = document.getElementById('codeInput').value.toLowerCase();
-
-            if (code === '007') {
-                // Show second loading screen for 007
-                document.getElementById('mainContainer').style.display = 'none';
-                document.getElementById('secondLoadingScreen').style.display = 'flex';
-
-                setTimeout(() => {
-                    window.location.href = 'target-page-007.html';
-                }, 2000); // 2-second delay on the second loading screen
-            } else if (code === 'm16') {
+            
+            if (code === 'm16') {
                 document.getElementById('mainContainer').style.display = 'none';
                 document.getElementById('finalPasswordContainer').style.display = 'block';
             } else {
@@ -155,7 +142,7 @@
             }
         }
 
-        // Check username for m16 path
+      
         function checkFinalPassword() {
             const finalPassword = document.getElementById('finalPasswordInput').value.toLowerCase();
             if (finalPassword === 'agentp') {
