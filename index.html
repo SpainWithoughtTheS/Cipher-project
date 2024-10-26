@@ -59,7 +59,7 @@
         .container {
             max-width: 700px;
             padding: 30px;
-            border-radius: 8px;
+            border-radius: 10px;
             background-color: rgba(0, 51, 0, 0.9);
             box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
             text-align: left;
@@ -212,7 +212,35 @@
     <!-- Main Container with Text Content -->
     <div id="content" class="container">
         <h1>Secure Intelligence Network</h1>
-        <!-- Content here... -->
+
+        <div class="section-title">Transaction History</div>
+        <ul>
+            <li><strong>Operation Code:</strong> X-12A3</li>
+            <li><strong>Asset Transfer:</strong> 0.56 BTC to ID#741029</li>
+            <li><strong>Recipient:</strong> UMBRA NETWORK (Secured)</li>
+            <li><strong>Status:</strong> Pending Clearance</li>
+        </ul>
+
+        <div class="section-title">Encrypted Files</div>
+        <ul>
+            <li><strong>File #4982:</strong> Access restricted (Level 5)</li>
+            <li><strong>File #4983:</strong> Decoding sequence in progress...</li>
+            <li><strong>File #4984:</strong> "Operation Silent Echo" - Authorized Personnel Only</li>
+        </ul>
+
+        <div class="section-title">Mini-Game: Unlock the Code</div>
+        <div class="mini-game">
+            <p>Press the correct buttons in the right order to unlock the hint.</p>
+            <button class="game-button" id="btn0-1">0</button>
+            <button class="game-button" id="btn7">7</button>
+            <button class="game-button" id="btn2">2</button>
+            <button class="game-button" id="btn0-2">0</button>
+        </div>
+
+        <div id="hint-message">Hint Unlocked: Have you inspected the code yet?</div>
+
+        <!-- Countdown Timer -->
+        <div id="timer">Time Remaining: 02:00</div>
     </div>
 
     <!-- Lock Overlay -->
@@ -224,8 +252,86 @@
     <audio id="alarm-sound" src="alarm.mp3" preload="auto"></audio>
 
     <script>
-        // Ensure the floating binary animation and other elements are displayed as intended
-        // Rest of your script logic...
+        let timeRemaining = 120; // 2 minutes in seconds
+        const timerDisplay = document.getElementById("timer");
+        let countdown;
+
+        // Function to start the timer and audio
+        function startTimer() {
+            const alarmSound = document.getElementById("alarm-sound");  // Get the audio element
+            alarmSound.currentTime = 0;  // Reset audio to the start (time 0)
+            alarmSound.play();  // Play the alarm sound
+
+            countdown = setInterval(() => {
+                const minutes = Math.floor(timeRemaining / 60).toString().padStart(2, '0');
+                const seconds = (timeRemaining % 60).toString().padStart(2, '0');
+                timerDisplay.textContent = `Time Remaining: ${minutes}:${seconds}`;
+
+                if (timeRemaining <= 0) {
+                    clearInterval(countdown);
+                    lockPage();  // Call the function to lock the page
+                }
+
+                timeRemaining--;
+            }, 1000);
+        }
+
+        // Lock Page and Prompt for Password
+        function lockPage() {
+            document.getElementById("lock-overlay").style.display = "flex";  // Show lock overlay
+            const password = prompt("System Locked. Enter Password to Unlock:");
+            if (password && password.trim().toLowerCase() === "007") {
+                window.location.href = "page-2.html"; // Redirect to Page 2
+            } else {
+                alert("Access Denied: Incorrect Password");
+            }
+        }
+
+        // Event listener for the login button
+        document.getElementById("login-button").addEventListener("click", () => {
+            // Hide the login screen and show the main content
+            document.getElementById("login-container").style.display = "none";
+            document.getElementById("content").style.display = "block";
+            timerDisplay.style.display = "block";
+
+            // Start the timer and audio
+            startTimer();
+        });
+
+        // Mini-game logic for code 007
+        let step = 0;
+
+        document.getElementById('btn0-1').addEventListener('click', () => {
+            if (step === 0) step++;
+            else step = 0; // reset if wrong sequence
+        });
+
+        document.getElementById('btn0-2').addEventListener('click', () => {
+            if (step === 1) step++;
+            else step = 0; // reset if wrong sequence
+        });
+
+        document.getElementById('btn7').addEventListener('click', () => {
+            if (step === 2) {
+                document.getElementById('hint-message').style.display = 'block'; // Show hint
+            } else {
+                step = 0; // reset if wrong sequence
+            }
+        });
+
+        // Floating Binary Generator
+        const binaryContainer = document.querySelector('.binary-background');
+        const generateBinary = () => {
+            const binary = document.createElement('span');
+            binary.textContent = Math.random() > 0.5 ? '1' : '0';
+            binary.style.top = `${Math.random() * 100}vh`;
+            binary.style.left = `${Math.random() * 100}vw`;
+            binary.style.fontSize = `${Math.random() * 20 + 10}px`;
+            binary.style.animationDuration = `${Math.random() * 5 + 5}s`;
+            binaryContainer.appendChild(binary);
+            binary.addEventListener('animationend', () => binary.remove());
+        };
+        setInterval(generateBinary, 150);
     </script>
 </body>
 </html>
