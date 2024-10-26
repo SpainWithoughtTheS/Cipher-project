@@ -39,7 +39,7 @@
             position: absolute;
             color: rgba(0, 255, 0, 0.2);
             font-size: 18px;
-            animation: float s linear infinite;
+            animation: float 10s linear infinite;
             user-select: none;
         }
 
@@ -49,14 +49,17 @@
                 transform: translateY(0) translateX(0);
                 opacity: 1;
             }
-           
+            100% {
+                transform: translateY(100vh) translateX(-10px);
+                opacity: 0;
+            }
         }
 
         /* Main container styling */
         .container {
             max-width: 700px;
             padding: 30px;
-            border-radius: px;
+            border-radius: 10px;
             background-color: rgba(0, 51, 0, 0.9);
             box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
             text-align: left;
@@ -99,7 +102,7 @@
                 opacity: 0;
                 transform: translateY(20px);
             }
-            0% {
+            100% {
                 opacity: 1;
                 transform: translateY(0);
             }
@@ -185,9 +188,8 @@
     </style>
 </head>
 <body>
-   
-    <!-- Oh no this is junk code not worth looking innit?.... 00110000 00110000 00110111 --> 
-    
+
+    <!-- Login Screen -->
     <div id="login-container">
         <h1>Intelligence Network - Secure Access</h1>
         <button id="login-button">Login</button>
