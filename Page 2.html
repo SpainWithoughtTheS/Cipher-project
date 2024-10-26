@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Agent Verification</title>
+    <style>
+        /* Global Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #001a00;
+            color: #00ff00;
+            overflow: hidden;
+        }
+
+        /* Loading screen styling */
+        .loadingScreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #001a00;
+            color: #00ff00;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 1000;
+            text-align: center;
+        }
+
+        /* Container styling */
+        .container {
+            padding: 20px;
+            max-width: 400px;
+            background-color: rgba(0, 51, 0, 0.9);
+            border: 1px solid #00ff00;
+            border-radius: 10px;
+            box-shadow: 0px 4px 12px rgba(0, 255, 0, 0.3);
+            text-align: center;
+            display: none; /* Hidden until loading completes */
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #00ff00;
+            text-shadow: 0 0 5px #00ff00;
+        }
+
+        /* Input styling */
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            font-size: 1.2em;
+            color: #00ff00;
+            background-color: #001a00;
+            border: 1px solid #00ff00;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        /* Button styling */
+        button {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            color: #00ff00;
+            background-color: #001a00;
+            border: 2px solid #00ff00;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #003300;
+        }
+
+        /* Hint text styling */
+        #hintText {
+            display: none;
+            color: #00ff00;
+            font-size: 0.9em;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Initial Loading Screen -->
+    <div class="loadingScreen" id="initialLoadingScreen">
+        <h1>Loading Secure Access...</h1>
+        <p>Please wait...</p>
+    </div>
+
+    <!-- Second Loading Screen for 007 Code -->
+    <div class="loadingScreen" id="secondLoadingScreen" style="display: none;">
+        <h1>Verifying Agent 007...</h1>
+        <p>Finalizing access...</p>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container" id="mainContainer">
+        <h1>Enter Access Code</h1>
+        <input type="text" id="codeInput" placeholder="Enter code here...">
+        <button onclick="checkCode()">Submit</button>
+    </div>
+
+    <!-- Secondary Container for Final Password if "m16" is entered -->
+    <div class="container" id="finalPasswordContainer" style="display: none;">
+        <h1>Enter Final Password</h1>
+        <input type="text" id="finalPasswordInput" placeholder="Enter final password...">
+        <button onclick="checkFinalPassword()">Submit</button>
+        <button onclick="showHint()">Hint</button>
+        <p id="hintText">Hint: Check the original file for clues.</p>
+    </div>
+
+    <script>
+        // Show the main content after initial loading
+        window.onload = function() {
+            setTimeout(() => {
+                document.getElementById('initialLoadingScreen').style.display = 'none';
+                document.getElementById('mainContainer').style.display = 'block';
+            }, 2000); // 2-second initial loading screen delay
+        };
+
+        // Check initial access code
+        function checkCode() {
+            const code = document.getElementById('codeInput').value.toLowerCase();
+
+            if (code === '007') {
+                // Show second loading screen for 007
+                document.getElementById('mainContainer').style.display = 'none';
+                document.getElementById('secondLoadingScreen').style.display = 'flex';
+
+                setTimeout(() => {
+                    window.location.href = 'target-page-007.html';
+                }, 2000); // 2-second delay on the second loading screen
+            } else if (code === 'm16') {
+                document.getElementById('mainContainer').style.display = 'none';
+                document.getElementById('finalPasswordContainer').style.display = 'block';
+            } else {
+                alert('Access Denied: Invalid Code');
+            }
+        }
+
+        // Check final password for m16 path
+        function checkFinalPassword() {
+            const finalPassword = document.getElementById('finalPasswordInput').value.toLowerCase();
+            if (finalPassword === 'agentp') {
+                window.location.href = 'target-page-m16.html';
+            } else {
+                alert('Access Denied: Incorrect Final Password');
+            }
+        }
+
+        // Show hint for the final password
+        function showHint() {
+            document.getElementById('hintText').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Geolocation Tracker - M16 Headquarters</title>
+    <style>
+        /* Global Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Courier New', monospace;
+            color: #00ff00;
+        }
+
+        body {
+            background-color: #001a00;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #00ff00;
+            text-align: center;
+        }
+
+        /* Rotating Globe Effect */
+        .globe {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300px;
+            height: 300px;
+            margin: -150px 0 0 -150px;
+            border-radius: 50%;
+            border: 10px solid rgba(0, 255, 0, 0.2);
+            background: conic-gradient(#00ff00 0.25turn, transparent 0.25turn);
+            background-size: 25% 100%;
+            background-position: center;
+            animation: rotate 8s linear infinite;
+            filter: blur(0.5px);
+            opacity: 0.5;
+            z-index: -1;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+            to {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        /* Geolocation Box */
+        .container {
+            padding: 20px;
+            border-radius: 8px;
+            background-color: rgba(0, 51, 0, 0.9);
+            box-shadow: 0px 4px 20px rgba(0, 255, 0, 0.3);
+            border: 1px solid #00ff00;
+            max-width: 600px;
+            text-shadow: 0 0 8px #00ff00;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .coordinates {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+
+        /* Tracker Text */
+        .tracker-text {
+            font-size: 1em;
+            margin-top: 20px;
+            color: #00ff00;
+            animation: scrollText 15s linear infinite;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        @keyframes scrollText {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Rotating Globe Animation -->
+    <div class="globe"></div>
+
+    <!-- Main Content Container -->
+    <div class="container">
+        <h1>M16 Headquarters - Location</h1>
+        <div class="coordinates">
+            Latitude: 51.4872748<br>
+            Longitude: -0.1244219
+        </div>
+        <p>Geolocation Signal Detected...</p>
+        <div class="tracker-text">Tracking Coordinates | Last Known Location: London, United Kingdom...</div>
+    </div>
+
+</body>
+</html>
