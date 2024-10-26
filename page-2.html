@@ -117,10 +117,10 @@
         <button onclick="checkCode()">Submit</button>
     </div>
 
-    <!-- Secondary Container for Final Password if "m16" is entered -->
+    <!-- Secondary Container for Username if "m16" is entered -->
     <div class="container" id="finalPasswordContainer" style="display: none;">
         <h1>Enter Username</h1>
-        <input type="text" id="finalPasswordInput" placeholder="Enter final password...">
+        <input type="text" id="finalPasswordInput" placeholder="Enter username...">
         <button onclick="checkFinalPassword()">Submit</button>
         <button onclick="showHint()">Hint</button>
         <p id="hintText">Hint: Check the original file for clues.</p>
@@ -155,17 +155,17 @@
             }
         }
 
-        // Check final password for m16 path
+        // Check username for m16 path
         function checkFinalPassword() {
             const finalPassword = document.getElementById('finalPasswordInput').value.toLowerCase();
             if (finalPassword === 'agentp') {
                 window.location.href = 'target-page-m16.html';
             } else {
-                alert('Access Denied: Incorrect Final Password');
+                alert('Access Denied: Incorrect Username');
             }
         }
 
-        // Show hint for the final password
+        // Show hint for the username
         function showHint() {
             document.getElementById('hintText').style.display = 'block';
         }
