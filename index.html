@@ -277,15 +277,7 @@
         }
 
         // Lock Page and Prompt for Password
-        function lockPage() {
-            document.getElementById("lock-overlay").style.display = "flex";  // Show lock overlay
-            const password = prompt("System Locked. Enter Password to Unlock:");
-            if (password && password.trim().toLowerCase() === "007") {
-                window.location.href = "page-2.html"; // Redirect to Page 2
-            } else {
-                alert("Access Denied: Incorrect Password");
-            }
-        }
+      
 
         // Event listener for the login button
         document.getElementById("login-button").addEventListener("click", () => {
