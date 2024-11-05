@@ -290,6 +290,16 @@
             startTimer();
         });
 
+          function lockPage() {
+            document.getElementById("lock-overlay").style.display = "flex";  // Show lock overlay
+            const password = prompt("System Locked. Enter Password to Unlock:");
+            if (password && password.trim().toLowerCase() === "007") {
+                window.location.href = "page-2.html"; // Redirect to Page 2
+            } else {
+                alert("Access Denied: Incorrect Password");
+            }
+        }
+
         // Mini-game logic for code 007
         let step = 0;
 
